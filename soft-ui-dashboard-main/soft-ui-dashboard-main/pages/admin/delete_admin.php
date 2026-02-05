@@ -1,6 +1,6 @@
 <?php
 
-include "config.php";
+include "../header/config.php";
 
 //ambil id dari URL
 //kalau di URL ada id, simpan ke var $id
@@ -11,7 +11,7 @@ $id= $_GET['id'] ?? null;
 //ambil data id
 
 //update
-     mysqli_query($koneksi, "DELETE FROM tbl_calon_ketua_osis WHERE id_calon='$id'" );
+     mysqli_query($koneksi, "DELETE FROM tbl_admin WHERE id_admin='$id'" );
 
-     header("Location: calon_ketos.php");
+     header("Location: admin.php");
      exit;

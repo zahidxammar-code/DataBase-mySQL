@@ -1,9 +1,19 @@
 <?php
-include "header.php";
-include "config.php";
+include "../header/header.php";
+include "../header/config.php";
+
+$halaman_aktif = basename($_SERVER['PHP_SELF']);
+
+// $halaman_aktif = admin.php
+// $_SERVER['PHP_SELF'] = variable bawaan PHP yang berisikan alamat file yang sudah dibuka 
+// basename() = adalah fungsi PHP untuk mengambil file saja dari sebuah path
+// ambil alamat file sekarang -> ambil nama filenya saja
+
+
 ?>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 
 
     <div class="container-fluid py-4">
@@ -12,8 +22,8 @@ include "config.php";
           <div class="card mb-4">
            
             <div class="card-header pb-0">
-                <a href="tambah_siswa.php" type="button"  class="btn btn-primary btn-lg">TAMBAH SISWA</a>
-              <h6>Daftar Siswa</h6>
+                <a href="tambah_admin.php" type="button"  class="btn btn-primary btn-lg">TAMBAH ADMIN</a>
+              <h6>Daftar Admin</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
@@ -21,12 +31,12 @@ include "config.php";
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NO</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NAMA</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">KELAS</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">JURUSAN</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ALAMAT</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Username</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                       <th class="text-secondary opacity-7"></th>
-                    </tr>
+                     </tr>
                   </thead>
                   <tbody>
 
@@ -36,7 +46,7 @@ include "config.php";
 
                   <?php
                   $no= 1;
-                  $query = mysqli_query($koneksi ,"select* from tbl_siswa");
+                  $query = mysqli_query($koneksi ,"select* from tbl_admin");
                   foreach($query as $key) : 
                   ?>
 
@@ -45,44 +55,48 @@ include "config.php";
                   <div class="d-flex px-2 py-1">
                     <?=$no++?>
                   </div>
-                         <!-- <div>
-                           <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
-                        </div> -->
+                         
 
                       </td>
                       
-                      <td> 
-                        <div>
-                          <p class="text-xs font-weight-bold mb-0"><?= $key['nama']?></p>
-                          <p class="text-xs text-secondary mb-0"></p>
+                     <td> 
+                        <div class="d-flex px-2 py-1">
+                      <div>
+                       <img src="../../assets/img/<?= $key['foto'] ?>" class="avatar avatar-sm me-3" alt="user1">
+                     </div>
+                          <div class="d-flex flex-column justify-content-center">
+                          <h4 class="text-xs font-weight-bold mb-0"><?= $key['username']?></h4>
+                          <p class="text-xs text-secondary mb-0">predikat</p>
+                        </div>
                         </div>
                       </td>
 
+
                       <td class="align-middle text-center text-sm">
-                        <span class="badge badge-sm bg-gradient-success"><?= $key['kelas']?></span>
+                        <span class="badge badge-sm bg-gradient-success"><?= $key['password']?></span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"><?= $key['jurusan']?></span>
+                        <span class="text-secondary text-xs font-weight-bold"><?= $key['nama']?></span>
                       </td>
                        <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"><?= $key['alamat']?></span>
                       </td>
-
-                      <td class="align-middle">
-                        <a href="edit_siswa.php?id=<?= $key['id_siswa'] ?>" 
+                     <td class="align-middle">
+                        <a href="edit_admin.php?id=<?= $key['id_admin'] ?>"
                         class="text-warning font-weight-bold text-xs"
                         data-toggle="tooltip" data-original-title="Edit user">
                           Edit
                         </a>
                       </td>
                        <td class="align-middle">
-                        <a href="delete_siswa.php?id=<?= $key['id_siswa'] ?>" type="button"
-                        class="text-danger font-weight-bold text-xs"
-                        data-toggle="tooltip" data-original-title="Edit user">
-                          <i class="fa-solid fa-trash fs-"></i>
-                        </a>
+                       <a href="#"
+                        class="text-secondary text-xs font-weight-bold text-danger"
+                        onclick="hapusAdmin(<?= $key['id_admin'] ?>)"
+                        data-toggle="tooltip"
+                        data-original-title="Edit user">
+                        <i class="fa-solid fa-trash fs-"></i>|delete
+                      </a>
                       </td>
-<!-- <a href="tambah_siswa.php"   class="btn btn-primary btn-lg">TAMBAH SISWA</a> -->
                     </tr>
                     
                <?php endforeach?>
@@ -99,29 +113,14 @@ include "config.php";
           <div class="row align-items-center justify-content-lg-between">
             <div class="col-lg-6 mb-lg-0 mb-4">
               <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
+            ©
+            made with IT XPRO
+            
+            for a better web.
+          </div>
             </div>
             <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
+            
             </div>
           </div>
         </div>
@@ -212,6 +211,27 @@ include "config.php";
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.1.0"></script>
+
+  <script>
+  function hapusAdmin(id_admin) {
+    Swal.fire({
+      title: "Do you want to delete this file?",
+      text: "your data will deleted permanen",
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: "delete",
+      cancelbuttontext: "cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = 'delete_admin.php?id=' + id_admin;
+        Swal.fire("Your file deleted!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("cancel deleted", "", "info");
+      }
+    });
+  }
+</script>
+
 </body>
 
 </html>

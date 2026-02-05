@@ -1,3 +1,7 @@
+<?php 
+$halaman_aktif = basename($_SERVER['PHP_SELF']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,10 +21,15 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <!-- sweetalert2 -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+  <!-- icon -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -28,7 +37,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="../pages/dasboard.php" target="_blank">
-       <img src="../assets/img/logo_smk_pesat.png" class="navbar-brand-img h-100" alt="main_logo">
+       <img src="../../assets/img/logo_smk_pesat.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">PESAT IT XPRO</span>
       </a>
     </div>
@@ -36,7 +45,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link  active" href="../pages/dasboard.php">
+          <a class="nav-link <?= $halaman_aktif == 'dasboard.php' ? 'active' : ''?>" href="../dashboard/dasboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -56,9 +65,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/siswa.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <a class="nav-link <?= $halaman_aktif == 'siswa.php'||$halaman_aktif =='edit_siswa.php'||$halaman_aktif =='tambah_siswa.php'?'active' : ''?> "href="../siswa/siswa.php">
+            <div class="fa-solid fa-user icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center " >
+              <svg width="2px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-1869.000000, -293.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -76,9 +85,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/admin.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <a class="nav-link <?= $halaman_aktif == 'admin.php'|| $halaman_aktif == 'edit_admin.php'|| $halaman_aktif =='tambah_admin.php'?'active' : ''?>  " href="../admin/admin.php">
+            <div class="fa-solid fa-user-gear icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center">
+              <svg width="2px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -96,9 +105,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href="../pages/calon_ketos.php">
-            <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-              <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <a class="nav-link <?= $halaman_aktif == 'calon_ketos.php' || $halaman_aktif == 'edit_ketos.php' || $halaman_aktif == 'tambah_calonketos.php' ? 'active' : ''?>  " href="../ketos/calon_ketos.php">
+            <div class="fa-solid fa-user-tie icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center">
+              <svg width="2px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
                 <title>box-3d-50</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -164,20 +173,20 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Pages</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder mb-0">pages</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Type here...">
+              <input type="text" class="form-control" placeholder="Type..">
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-soft-ui-dashboard">Online Builder</a>
+              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-soft-ui-dashboard">Online</a>
             </li>
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">

@@ -1,7 +1,15 @@
 
 
 <?php
-include "header.php"
+include "../header/header.php";
+
+$halaman_aktif = basename($_SERVER['PHP_SELF'])
+
+// $halaman_aktif = siswa.php
+// $_SERVER['PHP_SELF'] = variable bawaan PHP yang berisikan alamat file yang sudah dibuka 
+// basename() = adalah fungsi PHP untuk mengambil file saja dari sebuah path
+// ambil alamat file sekarang -> ambil nama filenya saja
+
 ?>
 
 

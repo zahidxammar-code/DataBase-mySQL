@@ -1,0 +1,110 @@
+
+
+
+<?php
+include "../header/header.php";
+include "../header/config.php";
+
+
+$halaman_aktif = basename($_SERVER['PHP_SELF']);
+
+// $halaman_aktif = siswa.php
+// $_SERVER['PHP_SELF'] = variable bawaan PHP yang berisikan alamat file yang sudah dibuka 
+// basename() = adalah fungsi PHP untuk mengambil file saja dari sebuah path
+// ambil alamat file sekarang -> ambil nama filenya saja
+
+if ($_SERVER['REQUEST_METHOD'] == "POST"){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $nama = $_POST['nama'];
+    $alamat = $_POST['alamat'] ;
+
+    //folder upload/ lokasi tujuan foto
+    $folder = "../../assets/img/";
+
+    //ambil data
+    $namaFile = $_FILES['foto']['name']; // ambil nama file
+    $tmpFile  = $_FILES['foto']['tmp_name']; // ambil lokasi sementara
+
+
+    // $$_FILES['foto']['name'];
+    // $_FILES adalah variabel bawaan php untuk menampung data file yang di upload.
+    // ['foto'] : name yg ada di form . ['name'] untuk mengambil nama asli file yang di-upload oleh user
+
+    // bikin nama unik biar ga nabrak
+    $namaBaru = time() . "_" . $namaFile;
+    
+    //pindahkan file 
+    move_uploaded_file($tmpFile,$folder . $namaBaru);
+
+    $query = mysqli_query($koneksi, "INSERT INTO tbl_admin(username,password,nama,alamat,foto)
+VALUES ('$username','$password','$nama','$alamat','$namaBaru')");
+
+if($query){
+    $success = true;
+}
+
+}
+
+?>
+
+
+
+<div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+        
+            <div class="card-body px-0 pt-0 pb-2">
+
+<form class=" my-5 mx-5" method="POST"  enctype="multipart/form-data">
+
+    <h2 class="badge bg-gradient-warning ">TAMBAH <span>-DATA-</span> ADMIN</h2>
+    <div class="form-group">
+        <label for="example-text-input" class="form-control-label">Username</label>
+        <input class="form-control" type="text" value="" id="example-text-input" name="username" required>
+    </div>
+    <div class="form-group">
+        <label for="example-search-input" class="form-control-label">Password</label>
+        <input class="form-control" type="text" value="" id="example-search-input" name="password" required>
+    </div>
+    <div class="form-group">
+        <label for="example-email-input" class="form-control-label">Full name</label>
+        <input class="form-control" type="text" value="" id="example-email-input" name="nama" required>
+    </div>
+    <div class="form-group mb-5x">
+        <label for="example-url-input" class="form-control-label">residence</label>
+        <input class="form-control" type="text" value="" id="example-url-input"  name="alamat" required>
+    </div>
+    <div class="form-group mb-5x">
+        <label for="example-url-input" class="form-control-label">your photo</label>
+        <input class="form-control" type="file" value="" id="example-url-input"  name="foto" required>
+    </div>
+        <button type="submit" class="btn btn-primary btn-lg w-100">ADD</button>
+</form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<?php
+if($success){ ?>
+
+<script>
+
+Swal.fire({
+  title: "Good job!",
+  text: "your data is safe",
+  icon: "success",
+  showConfirmButton : false,
+  timer : 2000
+}).then(()=>{
+    window.location.href = "admin.php";
+});
+
+
+</script>
+
+<?php }?>
