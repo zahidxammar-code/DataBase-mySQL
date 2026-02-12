@@ -16,7 +16,7 @@ $success = false;
 
 //ambil data id
 if($id){
-     $query = mysqli_query($koneksi, "SELECT * FROM tbl_calon_ketua_osis WHERE id_calon ='$id'");
+     $query = mysqli_query($koneksi, "SELECT * FROM tbl_calon WHERE id_calon ='$id'");
      $siswa = mysqli_fetch_assoc($query);
      //mysqli_fetch_assoc akan mengambil 1 baris data hasil dari query
 }
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     $sql = "UPDATE tbl_calon_ketua_osis SET nama_calon='$nama', visi='$visi', misi='$misi',WHERE id_calon='$id' ";
     }
 
-    $query = mysqli_query($koneksi, "update tbl_calon_ketua_osis set nama_calon ='$nama', visi='$visi',misi='$misi',foto='$foto'  where id_calon = '$id'" );
+    $query = mysqli_query($koneksi, "update tbl_calon set nama_calon ='$nama', visi='$visi',misi='$misi',foto='$foto'  where id_calon = '$id'" );
 
      if($query){
     $success = true;

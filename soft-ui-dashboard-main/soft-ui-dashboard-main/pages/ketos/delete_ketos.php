@@ -11,7 +11,7 @@ $id= $_GET['id'] ?? null;
 //ambil data id
 
 //update
-     mysqli_query($koneksi, "DELETE FROM tbl_calon_ketua_osis WHERE id_calon='$id'" );
+     mysqli_query($koneksi, "DELETE FROM tbl_calon WHERE id_calon='$id'" );
 
      header("Location: calon_ketos.php");
      exit;

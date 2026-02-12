@@ -1,5 +1,7 @@
-<?php 
+<?php
 $halaman_aktif = basename($_SERVER['PHP_SELF']);
+session_start();
+include "config.php"
 ?>
 
 <!DOCTYPE html>
@@ -21,14 +23,14 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- CSS Files -->
-  <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css?v=1.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="../../assets/css/soft-ui-dashboard.css" rel="stylesheet" />
   <!-- sweetalert2 -->
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
   <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
   <!-- icon -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
@@ -37,7 +39,7 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="../pages/dasboard.php" target="_blank">
-       <img src="../../assets/img/logo_smk_pesat.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="../../assets/img/logo_smk_pesat.png" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold">PESAT IT XPRO</span>
       </a>
     </div>
@@ -45,7 +47,7 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link <?= $halaman_aktif == 'dasboard.php' ? 'active' : ''?>" href="../dashboard/dasboard.php">
+          <a class="nav-link <?= $halaman_aktif == 'dasboard.php' ? 'active' : '' ?>" href="../dashboard/dasboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>shop </title>
@@ -65,8 +67,8 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= $halaman_aktif == 'siswa.php'||$halaman_aktif =='edit_siswa.php'||$halaman_aktif =='tambah_siswa.php'?'active' : ''?> "href="../siswa/siswa.php">
-            <div class="fa-solid fa-user icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center " >
+          <a class="nav-link <?= $halaman_aktif == 'siswa.php' || $halaman_aktif == 'edit_siswa.php' || $halaman_aktif == 'tambah_siswa.php' ? 'active' : '' ?> " href="../siswa/siswa.php">
+            <div class="fa-solid fa-user icon icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center ">
               <svg width="2px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>office</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -85,8 +87,8 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= $halaman_aktif == 'admin.php'|| $halaman_aktif == 'edit_admin.php'|| $halaman_aktif =='tambah_admin.php'?'active' : ''?>  " href="../admin/admin.php">
-            <div class="fa-solid fa-user-gear icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center">
+          <a class="nav-link <?= $halaman_aktif == 'admin.php' || $halaman_aktif == 'edit_admin.php' || $halaman_aktif == 'tambah_admin.php' ? 'active' : '' ?>  " href="../admin/admin.php">
+            <div class="fa-solid fa-user-gear icon icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center">
               <svg width="2px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -105,9 +107,9 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link <?= $halaman_aktif == 'calon_ketos.php' || $halaman_aktif == 'edit_ketos.php' || $halaman_aktif == 'tambah_calonketos.php' ? 'active' : ''?>  " href="../ketos/calon_ketos.php">
-            <div class="fa-solid fa-user-tie icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center">
-              <svg width="2px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
+          <a class="nav-link <?= $halaman_aktif == 'calon_ketos.php' || $halaman_aktif == 'edit_ketos.php' || $halaman_aktif == 'tambah_calonketos.php' ? 'active' : '' ?>  " href="../ketos/calon_ketos.php">
+            <div class="fa-solid fa-user-tie icon icon-shape icon-sm shadow border-radius-md bg-white me-2 d-flex align-items-center justify-content-center">
+              <svg width="2px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>box-3d-50</title>
                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                   <g transform="translate(-2319.000000, -291.000000)" fill="#FFFFFF" fill-rule="nonzero">
@@ -146,15 +148,15 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
             <span class="nav-link-text ms-1">Voting</span>
           </a>
         </li>
-       
+
       </ul>
     </div>
 
-    
+
     <div class="sidenav-footer mx-3 ">
       <div class="card card-background shadow-none card-background-mask-secondary" id="sidenavCard">
         <div class="card-body text-start p-3 w-100">
-         
+
           <div class="docs-info">
             <h6 class="text-white up mb-0">Need help?</h6>
             <p class="text-xs font-weight-bold">Please check our docs</p>
@@ -186,12 +188,12 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
           </div>
           <ul class="navbar-nav  justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="https://www.creative-tim.com/builder?ref=navbar-soft-ui-dashboard">Online</a>
+              <a class="btn btn-outline-primary btn-sm mb-0 me-3" target="_blank" href="#"><?= $_SESSION['nama'];  ?></a>
             </li>
             <li class="nav-item d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sign In</span>
+                <i class=" me-sm-1"></i>
+                <a class="btn btn-danger btn-sm mb-0 me-3" target="_blank" href="../logout_admin.php">Logout</a>
               </a>
             </li>
             <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

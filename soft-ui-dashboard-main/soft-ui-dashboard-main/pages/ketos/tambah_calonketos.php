@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     //pindahkan file 
     move_uploaded_file($tmpFile,$folder . $namaBaru);
 
-    $query = mysqli_query($koneksi, "INSERT INTO tbl_calon_ketua_osis (id_calon, nama_calon, visi, misi, foto) 
+    $query = mysqli_query($koneksi, "INSERT INTO tbl_calon (id_calon, nama_calon, visi, misi, foto) 
 VALUES (NULL, '$nama', '$visi', '$misi' , '$namaBaru')");
 
 if($query){

@@ -12,6 +12,18 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
 
 ?>
 
+<style>
+  .btn_tambah:hover {
+    transition: all 0.3s ease;
+  }
+  
+  .btn_tambah:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+  }
+</style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 
@@ -22,7 +34,7 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
           <div class="card mb-4">
            
             <div class="card-header pb-0">
-                <a href="tambah_admin.php" type="button"  class="btn btn-primary btn-lg">TAMBAH ADMIN</a>
+                <a href="tambah_admin.php" type="button"  class="btn btn_tambah btn-primary btn-lg">TAMBAH ADMIN</a>
               <h6>Daftar Admin</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">

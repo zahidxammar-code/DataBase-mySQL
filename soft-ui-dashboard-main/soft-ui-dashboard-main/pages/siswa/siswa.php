@@ -11,6 +11,17 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
 
 ?>
 
+<style>
+  .btn_tambah:hover {
+    transition: all 0.3s ease;
+  }
+  
+  .btn_tambah:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+  }
+</style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -21,7 +32,7 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
       <div class="card mb-4">
 
         <div class="card-header pb-0">
-          <a href="tambah_siswa.php" type="button" class="btn btn-primary btn-lg">TAMBAH SISWA</a>
+          <a href="tambah_siswa.php" type="button" class="btn btn_tambah btn-primary btn-lg">TAMBAH SISWA</a>
           <h6>Daftar Siswa</h6>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
@@ -34,8 +45,8 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">KELAS</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">JURUSAN</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ALAMAT</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">E-MAIL</th>
-                  
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">USERNAME</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">PASSWORD</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,6 +94,9 @@ $halaman_aktif = basename($_SERVER['PHP_SELF']);
                     </td>
                     <td class="align-middle text-center">
                       <span class="text-secondary text-xs font-weight-bold"><?= $key['mail'] ?></span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold"><?= $key['password'] ?></span>
                     </td>
 
 

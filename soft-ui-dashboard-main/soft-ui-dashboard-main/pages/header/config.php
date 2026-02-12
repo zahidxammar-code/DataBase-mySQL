@@ -2,7 +2,7 @@
 $host = "localhost";
 $username = "root";
 $pass = "";
-$db = "db_voting";
+$db = "db_osis";
 
 
 $koneksi = mysqli_connect($host, $username, $pass, $db);
